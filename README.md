@@ -1,3 +1,11 @@
+# Hosted over Firebase
+
+Have Patience!! backend takes a while to process 
+
+https://todoapp-ffc0d.web.app/
+[https://todoapp-ffc0d.web.app/](https://todoapp-ffc0d.web.app/).
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
