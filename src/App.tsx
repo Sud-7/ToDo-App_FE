@@ -20,8 +20,10 @@ const App: React.FC = () => {
     fetchTasks();
   }, []);
 
+  const baseURL = "https://todo-app-be-7tgv.onrender.com/tasks/";
+
   const fetchTasks = async () => {
-    const response = await axios.get("http://localhost:5000/tasks");
+    const response = await axios.get(baseURL);
     setTasks(response.data);
   };
 
@@ -36,21 +38,21 @@ const App: React.FC = () => {
 
   const addTask = async () => {
     const newTask = { title, description, status };
-    await axios.post("http://localhost:5000/tasks", newTask);
+    await axios.post(baseURL, newTask);
     fetchTasks();
     resetForm();
   };
 
   const updateTask = async (id: string) => {
     const updatedTask = { title, description, status };
-    await axios.put(`http://localhost:5000/tasks/${id}`, updatedTask);
+    await axios.put(`${baseURL}${id}`, updatedTask);
     fetchTasks();
     resetForm();
     setIsEditing(false);
   };
 
   const deleteTask = async (id: string) => {
-    await axios.delete(`http://localhost:5000/tasks/${id}`);
+    await axios.delete(`${baseURL}${id}`);
     fetchTasks();
   };
 
@@ -114,7 +116,7 @@ const App: React.FC = () => {
         </form>
       </div>
       <div>
-        <ul className="grid grid-cols-4 space-x-6 p-12">
+        <ul className="grid grid-cols-5 space-x-6 p-12">
           {tasks.map((task) => (
             <li
               key={task._id}
@@ -123,18 +125,20 @@ const App: React.FC = () => {
               <h2 className="text-xl font-bold">{task.title}</h2>
               <p>{task.description}</p>
               <p className="text-sm">{task.status}</p>
-              <button
-                onClick={() => editTask(task)}
-                className="bg-yellow-500 mt-3 hover:bg-yellow-600 text-white p-2 rounded mr-2 hover:scale-105 duration-300 w-[90px]"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => deleteTask(task._id)}
-                className="bg-red-500 hover:bg-red-600 text-white p-2 rounded hover:scale-105 duration-300 w-[90px]"
-              >
-                Delete
-              </button>
+              <div className="flex justify-center gap-2">
+                <button
+                  onClick={() => editTask(task)}
+                  className="bg-yellow-500  hover:bg-yellow-600 text-white p-2 rounded  hover:scale-105 duration-300 w-[150px]"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => deleteTask(task._id)}
+                  className="bg-red-500 hover:bg-red-600 text-white p-2 rounded hover:scale-105 duration-300 w-[150px]"
+                >
+                  Delete
+                </button>
+              </div>
             </li>
           ))}
         </ul>
