@@ -116,25 +116,29 @@ const App: React.FC = () => {
         </form>
       </div>
       <div>
-        <ul className="grid grid-cols-5 space-x-6 p-12">
+        <ul className="grid lg:grid-cols-5 lg:space-x-6 lg:p-12 md:grid-cols-4 md:space-x-2 md:p-4 grid-cols-2 p-1 m-2 gap-3">
           {tasks.map((task) => (
             <li
               key={task._id}
               className="mb-4 p-4 border rounded hover:scale-105 bg-blue-200/50"
             >
-              <h2 className="text-xl font-bold">{task.title}</h2>
-              <p>{task.description}</p>
-              <p className="text-sm">{task.status}</p>
+              <h2 className="lg:text-xl font-bold text-sm md:text-lg">
+                {task.title}
+              </h2>
+              <p className="text-sm font-thin md:text-base lg:text-lg">
+                {task.description}
+              </p>
+              <p className="text-sm md:text-base lg:text-xl">{task.status}</p>
               <div className="flex justify-center gap-2">
                 <button
                   onClick={() => editTask(task)}
-                  className="bg-yellow-500  hover:bg-yellow-600 text-white p-2 rounded  hover:scale-105 duration-300 w-[150px]"
+                  className="bg-yellow-500  hover:bg-yellow-600 text-white p-2 rounded  hover:scale-105 duration-300 w-[70px] lg:w-[150px]"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => deleteTask(task._id)}
-                  className="bg-red-500 hover:bg-red-600 text-white p-2 rounded hover:scale-105 duration-300 w-[150px]"
+                  className="bg-red-500 hover:bg-red-600 text-white p-2 rounded hover:scale-105 duration-300 w-[70px] lg:w-[150px]"
                 >
                   Delete
                 </button>
